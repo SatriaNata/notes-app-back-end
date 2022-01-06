@@ -17,12 +17,14 @@ const init =async ()=>{
 
     await server.register({
         plugin: notes,
-        option:{
+        options: {
             service: notesService,
             validator: NotesValidator,
-        }
-    })
+        },
+    });
+    
     await server.start();
     console.log(`Server berjalan pada ${server.info.uri}`);
 };
+
 init();

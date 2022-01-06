@@ -1,4 +1,4 @@
-// const { payload } = require("@hapi/hapi/lib/validation");
+const { payload } = require("@hapi/hapi/lib/validation");
 const ClientError = require("../../exceptions/ClientError");
 
 class NotesHandler{
@@ -21,8 +21,8 @@ class NotesHandler{
             const noteId = this._service.addNote({title, body, tags});
 
             const response = h.response({
-                status: ' success',
-                message: 'Catatan berasil ditabahkan',
+                status: 'success',
+                message: 'Catatan berhasil ditambahkan',
                 data:{
                     noteId,
                 },
@@ -94,12 +94,12 @@ class NotesHandler{
 
     putNoteByIdHandler(request,h){
         try{
-            this._validator.validateNotePayload(request,payload);
+            this._validator.validateNotePayload(request.payload);
             const {id} = request.params;
             this._service.editNoteById(id, request.payload);
             return{
                 status: 'success',
-                message: 'Catatan berhasil diperbaharui'
+                message: 'Catatan berhasil diperbarui',
             }
         }catch(error){
             if(error instanceof ClientError){

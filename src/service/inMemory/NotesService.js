@@ -4,7 +4,7 @@ const NotFoundError = require('../../exceptions/NotFoundError');
 
 class NotesService{
     constructor(){
-        this.note=[];
+        this._notes = [];
     }
 
     addNote({title, body, tags}){
@@ -19,6 +19,7 @@ class NotesService{
         this._notes.push(newNote);
 
         const isSuccess = this._notes.filter((note)=>note.id === id).length>0;
+        
         if(!isSuccess){
             throw new InvariantError('Catatan gagal ditambahkan');
         }
@@ -56,7 +57,6 @@ class NotesService{
 
     deleteNoteById(id){
         const index = this._notes.findIndex((note)=>note.id === id);
-
         if (index === -1){
             throw new NotFoundError('Catatan gagal diapus. Id tidak ditemukan');
         }
