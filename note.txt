@@ -1,1 +1,6 @@
 http://notesapp-v1.dicodingacademy.com/
+
+di dalam folder cd back end
+pm2 restart notes-api
+pm2 stop notes-api
+pm2 start notes-api
